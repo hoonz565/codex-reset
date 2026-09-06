@@ -6,15 +6,15 @@ const fs = require('fs');
   const extensionPath = path.resolve(__dirname, 'dist');
 
   const browser = await puppeteer.launch({
-    headless: 'new', // new headless mode supports extensions
+    headless: 'new',
     args: [`--disable-extensions-except=${extensionPath}`, `--load-extension=${extensionPath}`],
   });
 
-  const extensionId = 'ljbjnnpmhdcmbadkcedoenjpkplddfpc'; // Pre-computed
+  const extensionId = 'ljbjnnpmhdcmbadkcedoenjpkplddfpc';
 
   const page = await browser.newPage();
 
-  // Intercept network to log requests
+  // Log outgoing requests and responses to the local worker
   await page.setRequestInterception(true);
   page.on('request', (request) => {
     if (request.url().includes('127.0.0.1:8787')) {
@@ -36,7 +36,7 @@ const fs = require('fs');
   console.log('Navigating to popup...');
   await page.goto(`chrome-extension://${extensionId}/popup.html`);
 
-  // 2. Call GET /api/status
+  // 2. GET /api/status
   await page.waitForSelector('#status-container:not(:empty)');
   const statusHtml = await page.$eval('#status-container', (el) => el.textContent);
   console.log(
@@ -44,8 +44,7 @@ const fs = require('fs');
   );
   console.log(`[RENDERED TEXT] ${statusHtml}`);
 
-  // 3. Verify POST /api/subscriptions
-  // Clear and type email
+  // 3. POST /api/subscriptions — valid form
   await page.evaluate(() => (document.getElementById('email').value = ''));
   await page.type('#email', 'test@example.com');
 
@@ -57,7 +56,7 @@ const fs = require('fs');
   console.log(`[PASS] POST Subscription Rendered: ${subHtml.includes('sub_transport_spike')}`);
   console.log(`[RENDERED TEXT] ${subHtml}`);
 
-  // 4. Test validation error (uncheck both)
+  // 4. Validation error — uncheck all alert types then submit
   console.log('Testing validation error...');
   await page.click('#alert-70');
   await page.click('#alert-announced');
@@ -70,18 +69,14 @@ const fs = require('fs');
   console.log(`[PASS] Invalid Request Error Rendered: ${errorHtml.includes('Validation')}`);
   console.log(`[RENDERED TEXT] ${errorHtml}`);
 
-  // 5. Test unavailable backend
+  // 5. Network error — mock fetch to simulate backend unreachable
   console.log('Testing unavailable backend...');
-  // Force backend URL change in JS
   await page.evaluate(() => {
-    window.API_BASE = 'http://127.0.0.1:9999';
-    // Wait, the API_BASE is probably a const in popup.js scope.
-    // Let's just mock fetch in the page to throw network error.
     window.originalFetch = window.fetch;
     window.fetch = () => Promise.reject(new Error('Failed to fetch'));
   });
 
-  await page.click('#alert-70'); // Check one to make it valid
+  await page.click('#alert-70');
   await page.click('#subscribe-btn');
   await page.waitForFunction(
     'document.getElementById("sub-result").textContent.includes("Failed to fetch")'

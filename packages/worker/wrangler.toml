@@ -20,7 +20,7 @@ name = "codex-reset-notifier-staging"
 [env.staging.vars]
 ENVIRONMENT = "staging"
 ALLOWED_ORIGINS = "chrome-extension://ljbjnnpmhdcmbadkcedoenjpkplddfpc"
-MANAGEMENT_PAGE_URL = "https://codex-reset-notifier-staging.nguyenminhhung05062005.workers.dev/manage"
+MANAGEMENT_PAGE_URL = "https://notidex.click/manage"
 # ADMIN_API_TOKEN is bound via `wrangler secret put ADMIN_API_TOKEN --env staging`
 # RATE_LIMIT_SECRET is bound via `wrangler secret put RATE_LIMIT_SECRET --env staging`
 

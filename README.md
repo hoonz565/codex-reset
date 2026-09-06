@@ -61,7 +61,7 @@
 | **Status Endpoint**     | `GET /api/status`                                       |
 | **Privacy Policy**      | `https://notidex.click/privacy`                         |
 | **Management Portal**   | `https://notidex.click/manage`                          |
-| **D1 Database**         | `codex_reset_prod` (`e0b99231-cd4e-4e78-bfa3-99a1b6cbdd61`) |
+| **D1 Database**         | `codex_reset_prod`                                           |
 | **Sender Domain**       | `alerts@notidex.click` (Resend verified)                |
 | **Chrome Extension ID** | `oecegicjjbjgdaipabophafmkgaieohl`                      |
 
