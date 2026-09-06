@@ -2,11 +2,9 @@
 
 > **Chrome Extension & Serverless Cloud Platform** to monitor OpenAI Codex quota reset cycles in real-time and deliver instant email alerts.
 
-[![CI Tests](https://img.shields.io/badge/Tests-727%20Passed-success?style=flat-square)](docs/testing-strategy.md)
-[![Cloudflare Workers](https://img.shields.io/badge/Backend-Cloudflare%20Workers-orange?style=flat-square)](https://workers.cloudflare.com)
-[![Cloudflare D1](<https://img.shields.io/badge/Database-Cloudflare%20D1%20(SQLite)-blue?style=flat-square>)](https://developers.cloudflare.com/d1/)
-[![Chrome Extension](https://img.shields.io/badge/Extension-Manifest%20V3-yellow?style=flat-square)](packages/extension)
-[![Email Provider](https://img.shields.io/badge/Email-Resend-black?style=flat-square)](https://resend.com)
+[![Users](https://img.shields.io/chrome-web-store/users/oecegicjjbjgdaipabophafmkgaieohl?style=flat-square&logo=googlechrome&logoColor=white&label=USERS&color=4285F4)](https://chromewebstore.google.com/detail/codex-reset-notifier/oecegicjjbjgdaipabophafmkgaieohl)
+[![Rating](https://img.shields.io/chrome-web-store/rating/oecegicjjbjgdaipabophafmkgaieohl?style=flat-square&logo=googlechrome&logoColor=white&label=RATING&color=34A853)](https://chromewebstore.google.com/detail/codex-reset-notifier/oecegicjjbjgdaipabophafmkgaieohl)
+[![Version](https://img.shields.io/chrome-web-store/v/oecegicjjbjgdaipabophafmkgaieohl?style=flat-square&logo=googlechrome&logoColor=white&label=CHROME+WEB+STORE&color=555555)](https://chromewebstore.google.com/detail/codex-reset-notifier/oecegicjjbjgdaipabophafmkgaieohl)
 
 ---
 
